@@ -1,4 +1,4 @@
-import { LinkedList } from '../../Data Structures/LinkedList.js';
+import { LinkedList } from '../../Algorithms/Data Structures/LinkedList.js.js';
 
 // a -> b -> a
 // solution 1: iterate over linked list, insert nodes into new list

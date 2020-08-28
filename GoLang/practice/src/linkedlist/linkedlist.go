@@ -121,3 +121,57 @@ func (l *LinkedList) RemoveDuplicatesWithoutBuffer() {
 		r = c
 	}
 }
+
+// RemoveNthToLastElement .
+func (l *LinkedList) RemoveNthToLastElement(n int) {
+	length := 0
+	c := l.head
+	
+	for c != nil {
+		length++
+		c = c.next
+	}
+
+	if n > length {
+		fmt.Println("error: index out of range")
+		return
+	} else if n == length {
+		l.head = l.head.next
+		return
+	}
+
+	stop := length - n - 2
+	c = l.head
+	for i := 0; i < stop; i++ {
+		c = c.next
+	}
+	c.next = c.next.next
+}
+
+// RemoveNthToLastElement2 .
+func (l *LinkedList) RemoveNthToLastElement2(n int) {
+	r1 := l.head
+	r2 := l.head
+
+	for i := 0; i < n + 1; i++ {
+		r1 = r1.next
+		if r1 == nil && i < n {
+			fmt.Println("error: out of range")
+			return
+		}
+	}
+
+	if r1 == nil {
+		l.head = l.head.next
+		return
+	}
+	
+	for r1.next != nil {
+		r1 = r1.next
+		r2 = r2.next
+	}
+
+	if r2.next != nil {
+		r2.next = r2.next.next
+	}
+}
