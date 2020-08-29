@@ -13,13 +13,15 @@ type LinkedList struct {
 	head	*Node
 }
 
-func (l *LinkedList) Insert(v int) {
+func (l *LinkedList) Insert(v int) *Node {
+	var n *Node
 	if l.head == nil {
-		l.head = &Node{value: v, next: nil}
+		n = &Node{value: v, next: nil}
 	} else {
-		n := Node{value: v, next: l.head}
-		l.head = &n
+		n = &Node{value: v, next: l.head}
 	}
+	l.head = n
+	return n
 }
 
 // remove
@@ -174,4 +176,14 @@ func (l *LinkedList) RemoveNthToLastElement2(n int) {
 	if r2.next != nil {
 		r2.next = r2.next.next
 	}
+}
+
+// RemoveMiddleNode .
+func (l *LinkedList) RemoveMiddleNode(n *Node) {
+	for n.next.next != nil {
+		n.value = n.next.value
+		n = n.next
+	}
+	n.value = n.next.value
+	n.next = nil
 }
