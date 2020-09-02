@@ -7,20 +7,39 @@ import (
 )
 
 func main() {
+
+	// *** Partition
+
 	l := LinkedList.New()
-	l.Insert(1)
-	l.Insert(2)
-	l.Insert(3)
-	l.Insert(4)
-	r := l.Insert(5)
-	l.Insert(6)
 	l.Insert(7)
-	l.Insert(8)
+	l.Insert(2)
+	l.Insert(104)
+	l.Insert(108)
+	l.Insert(1)
+	l.Insert(106)
+	l.Insert(3)
+	l.Insert(105)
 	l.Print()
-	//l.RemoveNthToLastElement2(1)
-	l.RemoveMiddleNode(r)
+	l.Partition(105)
 	fmt.Println("--")
 	l.Print()
+
+	// *** RemoveNthToLastElement & RemoveMiddleNode
+
+	// l := LinkedList.New()
+	// l.Insert(1)
+	// l.Insert(2)
+	// l.Insert(3)
+	// l.Insert(4)
+	// r := l.Insert(5)
+	// l.Insert(6)
+	// l.Insert(7)
+	// l.Insert(8)
+	// l.Print()
+	// l.RemoveNthToLastElement2(1)
+	// l.RemoveMiddleNode(r)
+	// fmt.Println("--")
+	// l.Print()
 
 	// *** RemoveDuplicates
 

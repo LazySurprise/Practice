@@ -8,9 +8,21 @@ type Node struct {
 	next	*Node
 }
 
+// NewNode .
+func NewNode(v int) *Node {
+	n := Node{value: v, next: nil}
+	return &n
+}
+
 // LinkedList struct that we will use to create methods.
 type LinkedList struct {
 	head	*Node
+}
+
+// New yeet.
+func New() LinkedList {
+	l := LinkedList{head: nil}
+	return l
 }
 
 func (l *LinkedList) Insert(v int) *Node {
@@ -76,12 +88,6 @@ func (l *LinkedList) RemoveFront() *Node {
 	f := l.head
 	l.head = l.head.next
 	return f
-}
-
-// New yeet.
-func New() LinkedList {
-	l := LinkedList{head: nil}
-	return l
 }
 
 // RemoveDuplicates .
@@ -186,4 +192,29 @@ func (l *LinkedList) RemoveMiddleNode(n *Node) {
 	}
 	n.value = n.next.value
 	n.next = nil
+}
+
+// Partition .
+func (l *LinkedList) Partition(v int) {
+	c := l.head
+	var n1 *Node
+	var n2 *Node
+
+	for c.next != nil {
+		n1 = c
+		n2 = c.next
+		for n1.value < v && n1.next != nil {
+			n1 = n1.next
+		}
+		for n2.value >= v && n2.next != nil {
+			n2 = n2.next
+		}
+		if n1 != nil && n2 != nil && n1.value >= v && n2.value < v {
+			t := n1.value
+			n1.value = n2.value
+			n2.value = t
+		}
+		c = c.next
+	}
+	n2.next = NewNode(v)
 }
