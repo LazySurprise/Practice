@@ -8,21 +8,37 @@ import (
 
 func main() {
 
+	// *** SumLists
+
+	l1 := LinkedList.New()
+	l2 := LinkedList.New()
+	l1.Insert(6)
+	l1.Insert(1)
+	l1.Insert(7)
+	l2.Insert(2)
+	l2.Insert(9)
+	l2.Insert(5)
+
+	l3 := l1.SumLists(l1, l2)
+	fmt.Println()
+	l3.Print()
+
+
 	// *** Partition
 
-	l := LinkedList.New()
-	l.Insert(7)
-	l.Insert(2)
-	l.Insert(104)
-	l.Insert(108)
-	l.Insert(1)
-	l.Insert(106)
-	l.Insert(3)
-	l.Insert(105)
-	l.Print()
-	l.Partition(105)
-	fmt.Println("--")
-	l.Print()
+	// l := LinkedList.New()
+	// l.Insert(7)
+	// l.Insert(2)
+	// l.Insert(104)
+	// l.Insert(108)
+	// l.Insert(1)
+	// l.Insert(106)
+	// l.Insert(3)
+	// l.Insert(105)
+	// l.Print()
+	// l.Partition(105)
+	// fmt.Println("--")
+	// l.Print()
 
 	// *** RemoveNthToLastElement & RemoveMiddleNode
 

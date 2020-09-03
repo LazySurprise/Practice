@@ -1,6 +1,9 @@
 package LinkedList
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 // Node in LinkedList.
 type Node struct {
@@ -217,4 +220,57 @@ func (l *LinkedList) Partition(v int) {
 		c = c.next
 	}
 	n2.next = NewNode(v)
+}
+
+// SumLists .
+func (l *LinkedList) SumLists(l1 LinkedList, l2 LinkedList) LinkedList {
+	c1 := l1.head
+	c2 := l2.head
+
+	s := 0
+	carry := 0
+	d := 1
+
+	for c1 != nil || c2 != nil {
+		if c1 == nil {
+			s += ((c2.value + carry) * d)
+			carry = 0
+		} else if c2 == nil {
+			s += ((c1.value + carry) * d)
+			carry = 0
+		} else {
+			t := c1.value + c2.value + carry
+			carry = 1
+			if t > 10 {
+				if d == 1 {
+					s += t % 10
+				} else {
+					s += ((t % d) * d)
+				}
+			} else if t == 10 {
+				s += d
+			} else {
+				carry = 0
+				s += (t * d)
+			}
+		}
+		c1 = c1.next
+		c2 = c2.next
+		d *= 10
+	}
+
+	return intToLinkedList(s)
+}
+
+func intToLinkedList(i int) LinkedList {
+	s2 := strconv.Itoa(i)
+	n := New()
+	for i := 0; i < len(s2); i++ {
+		t, err := strconv.Atoi(string(s2[i]))
+		if err != nil {
+			fmt.Println("err: ", err)
+		}
+		n.Insert(t)
+	}
+	return n
 }
