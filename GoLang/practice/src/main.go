@@ -8,20 +8,32 @@ import (
 
 func main() {
 
+	// *** IsPalindrome
+
+	l := LinkedList.New()
+	l.Insert(3)
+	l.Insert(3)
+	l.Insert(4)
+	l.Insert(4)
+	l.Insert(4)
+	l.Insert(3)
+	l.Insert(3)
+	fmt.Println(l.IsPalindrome())
+
 	// *** SumLists
 
-	l1 := LinkedList.New()
-	l2 := LinkedList.New()
-	l1.Insert(6)
-	l1.Insert(1)
-	l1.Insert(7)
-	l2.Insert(2)
-	l2.Insert(9)
-	l2.Insert(5)
+	// l1 := LinkedList.New()
+	// l2 := LinkedList.New()
+	// l1.Insert(6)
+	// l1.Insert(1)
+	// l1.Insert(7)
+	// l2.Insert(2)
+	// l2.Insert(9)
+	// l2.Insert(5)
 
-	l3 := l1.SumLists(l1, l2)
-	fmt.Println()
-	l3.Print()
+	// l3 := l1.SumLists(l1, l2)
+	// fmt.Println()
+	// l3.Print()
 
 
 	// *** Partition

@@ -274,3 +274,32 @@ func intToLinkedList(i int) LinkedList {
 	}
 	return n
 }
+
+// IsPalindrome .
+func (l *LinkedList) IsPalindrome() bool {
+	l2 := l.reverse()
+	return l.isEqual(l2)
+}
+
+func (l *LinkedList) reverse() LinkedList {
+	l2 := New()
+	c := l.head
+	for c != nil {
+		l2.Insert(c.value)
+		c = c.next
+	}
+	return l2
+}
+
+func (l *LinkedList) isEqual(l2 LinkedList) bool {
+	r1 := l.head
+	r2 := l2.head
+	for r1 != nil && r2 != nil {
+		if r1.value != r2.value {
+			return false
+		}
+		r1 = r1.next
+		r2 = r2.next
+	}
+	return true
+}
