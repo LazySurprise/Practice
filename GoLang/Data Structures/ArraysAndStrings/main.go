@@ -10,9 +10,8 @@ func isUnique(str string) bool {
 	for _, char := range(str) {
 		if store[char] {
 			return false
-		} else {
-			store[char] = true
 		}
+		store[char] = true
 	}
 	return true
 }
