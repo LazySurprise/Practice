@@ -1,4 +1,8 @@
-package Algorithms
+package main
+
+import (
+	"fmt"
+)
 
 func BinarySearch(arr []int, key int) bool {
 	l := 0
@@ -17,4 +21,10 @@ func BinarySearch(arr []int, key int) bool {
 		}
 	}
 	return false
+}
+
+func main() {
+	arr := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+	fmt.Println(BinarySearch(arr, 7))
 }
