@@ -46,6 +46,20 @@ func isPalindrome(s1 string, s2 string) bool {
 	return true
 }
 
+func convertStringToURL(s string) string {
+	url := []byte{}
+
+	for _, char := range(s) {
+		if char == ' ' {
+			url = append(url, '%', '2', '0')
+		} else {
+			url = append(url, byte(char))
+		}
+	}
+
+	return string(url)
+}
+
 func main() {
 	uniqueString := "abcdef"
 	nonUniqueString := "abcdaef"
@@ -59,4 +73,8 @@ func main() {
 
 	fmt.Printf("%v is a palindrome of %v (%v)\n", s1, s2, isPalindrome(s1, s2))
 	fmt.Printf("%v is a palindrome of %v (%v)\n", s2, s3, isPalindrome(s2, s3))
+
+	s := "country roads, take me home"
+
+	fmt.Printf("OG String:\t%v\nURL String:\t%v\n", s, convertStringToURL(s))
 }
