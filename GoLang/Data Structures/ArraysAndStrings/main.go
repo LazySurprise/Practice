@@ -60,12 +60,39 @@ func convertStringToURL(s string) string {
 	return string(url)
 }
 
+func convertStringToURLInPlace(s []byte, length int) string {
+	numSpaces := 0
+	for i := 0; i < length; i++ {
+		if s[i] == ' ' {
+			numSpaces++
+		}
+	}
+	index := length + (numSpaces * 2)
+	for i := length - 1; i >= 0; i-- {
+		if s[i] == ' ' {
+			s[index - 1] = '0'
+			s[index - 2] = '2'
+			s[index - 3] = '%'
+			index = index - 3
+		} else {
+			s[index - 1] = s[i]
+			index--
+		}
+	}
+	return string(s)
+}
+
 func main() {
+
+	fmt.Println("\n----------------\nP1 - Unique Strings")
+
 	uniqueString := "abcdef"
 	nonUniqueString := "abcdaef"
 
 	fmt.Printf("%v is a unique string (%v)\n", uniqueString, isUniqueV2(uniqueString))
 	fmt.Printf("%v is a unique string (%v)\n", nonUniqueString, isUniqueV2(nonUniqueString))
+
+	fmt.Println("\n----------------\nP2 - Palindromes")
 
 	s1 := "abcd"
 	s2 := "abdc"
@@ -74,7 +101,10 @@ func main() {
 	fmt.Printf("%v is a palindrome of %v (%v)\n", s1, s2, isPalindrome(s1, s2))
 	fmt.Printf("%v is a palindrome of %v (%v)\n", s2, s3, isPalindrome(s2, s3))
 
-	s := "country roads, take me home"
+	fmt.Println("\n----------------\nP3 - URLify")
 
-	fmt.Printf("OG String:\t%v\nURL String:\t%v\n", s, convertStringToURL(s))
+	s := []byte("country roads, take me home        ")
+	
+	fmt.Printf("OG String:\t%v\n", string(s))
+	fmt.Printf("URL String:\t%v\n", convertStringToURLInPlace(s, len(s) - 8))
 }
