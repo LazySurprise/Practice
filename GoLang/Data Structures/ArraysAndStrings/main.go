@@ -82,6 +82,27 @@ func convertStringToURLInPlace(s []byte, length int) string {
 	return string(s)
 }
 
+func isPermutationOfPalindrome(s string) bool {
+	oddTracker := make(map[rune]int)
+	numOdds := 0
+
+	for _, char := range(s) {
+		if _, ok := oddTracker[char]; ok {
+			oddTracker[char]++
+			if oddTracker[char] % 2 == 0 {
+				numOdds--
+			} else {
+				numOdds++
+			}
+		} else {
+			oddTracker[char] = 1
+			numOdds++
+		}
+	}
+
+	return numOdds <= 1
+}
+
 func main() {
 
 	fmt.Println("\n----------------\nP1 - Unique Strings")
@@ -107,4 +128,13 @@ func main() {
 	
 	fmt.Printf("OG String:\t%v\n", string(s))
 	fmt.Printf("URL String:\t%v\n", convertStringToURLInPlace(s, len(s) - 8))
+
+	fmt.Println("\n----------------\nP4 - Permutation of Palindrome")
+
+	s1 = "aaaabbbbc"
+	s2 = "aaaabbbbcc"
+	s3 = "aaabbbc"
+	fmt.Printf("s1 is a permutation of a palindrome (%v)\n", isPermutationOfPalindrome(s1))
+	fmt.Printf("s2 is a permutation of a palindrome (%v)\n", isPermutationOfPalindrome(s2))
+	fmt.Printf("s3 is a permutation of a palindrome (%v)\n", isPermutationOfPalindrome(s3))
 }
