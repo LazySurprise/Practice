@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func isUnique(str string) bool {
@@ -103,6 +104,47 @@ func isPermutationOfPalindrome(s string) bool {
 	return numOdds <= 1
 }
 
+func isOneEditAway(s1 string, s2 string) bool {
+	// check that strings are at most one different in length
+	if int64(math.Abs(float64(len(s1) - len(s2)))) > 1 {
+		return false
+	} else if len(s1) == len(s2) {
+		return isOneReplaceAway(s1, s2)
+	} else if len(s1) < len(s2) {
+		return isOneInsertAway(s1, s2)
+	}
+	return isOneInsertAway(s2, s1)
+}
+
+func isOneInsertAway(shrt string, lng string) bool {
+	inserted := false
+	for i, j := 0, 0; i < len(shrt); i, j = i+1, j+1 {
+		if shrt[i] != lng[j] {
+			if shrt[i] == lng[j+1] {
+				if inserted {
+					return false
+				}
+				j = j + 1
+				inserted = true
+			}
+		}
+	}
+	return true
+}
+
+func isOneReplaceAway(shrt string, lng string) bool {
+	edited := false
+	for i := 0; i < len(shrt); i++ {
+		if shrt[i] != lng[i] {
+			if edited {
+				return false
+			}
+			edited = true
+		}
+	}
+	return true
+}
+
 func main() {
 
 	fmt.Println("\n----------------\nP1 - Unique Strings")
@@ -137,4 +179,12 @@ func main() {
 	fmt.Printf("s1 is a permutation of a palindrome (%v)\n", isPermutationOfPalindrome(s1))
 	fmt.Printf("s2 is a permutation of a palindrome (%v)\n", isPermutationOfPalindrome(s2))
 	fmt.Printf("s3 is a permutation of a palindrome (%v)\n", isPermutationOfPalindrome(s3))
+	
+	fmt.Println("\n----------------\nP5 - One away")
+
+	s1 = "abcd"
+	s2 = "abc"
+	s3 = "abdc"
+	fmt.Printf("%v is one edit away from %v (%v)\n", s1, s2, isOneEditAway(s1, s2))
+	fmt.Printf("%v is one edit away from %v (%v)\n", s1, s3, isOneEditAway(s1, s3))
 }
