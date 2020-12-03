@@ -30,6 +30,19 @@ func isUniqueV2(str string) bool {
 	return true
 }
 
+func isUnique3(str string) bool {
+	deduper := make(map[rune]bool)
+
+	for _, c := range str {
+		if !deduper[c] {
+			deduper[c] = true
+		} else {
+			return false
+		}
+	}
+	return true
+}
+
 func isPalindrome(s1 string, s2 string) bool {
 	if len(s1) != len(s2) {
 		return false
@@ -152,8 +165,8 @@ func main() {
 	uniqueString := "abcdef"
 	nonUniqueString := "abcdaef"
 
-	fmt.Printf("%v is a unique string (%v)\n", uniqueString, isUniqueV2(uniqueString))
-	fmt.Printf("%v is a unique string (%v)\n", nonUniqueString, isUniqueV2(nonUniqueString))
+	fmt.Printf("%v is a unique string (%v)\n", uniqueString, isUnique3(uniqueString))
+	fmt.Printf("%v is a unique string (%v)\n", nonUniqueString, isUnique3(nonUniqueString))
 
 	fmt.Println("\n----------------\nP2 - Palindromes")
 
